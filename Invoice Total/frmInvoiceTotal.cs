@@ -19,8 +19,16 @@ namespace Invoice_Total
 
         private void btnCalculate_Click(object sender, EventArgs e)
         {
+
+            /*this metho calculates the total for an invoice depending on a
+             * discount that's based on the subtotal */
+           
+            //get the subtotal amount from the Subtotal text box decimal subtotal
             decimal subtotal = Convert.ToDecimal(txtSubTotal.Text);
-            decimal discountPercent = 0m;
+
+            //set the discountPercent variable based
+            //on the value of the subtotal variable
+            decimal discountPercent = 0m;    //the m indicates a decimal value
             if (subtotal >= 500)
             {
                 discountPercent = .2m;
@@ -33,13 +41,18 @@ namespace Invoice_Total
             {
                 discountPercent = .1m;
             }
+
+            //calculate and assign the values for the
+            //discountAmount and invoiceTotal variables
             decimal discountAmount = subtotal * discountPercent;
             decimal invoiceTotal = subtotal - discountAmount;
 
-            txtDiscountPercent.Text = discountPercent.ToString("p1");
-            txtDiscountAmount.Text = discountAmount.ToString("c");
+            //format the values and display them in their text boxes
+            txtDiscountPercent.Text = discountPercent.ToString("p1"); //percent format with 1 decimal place
+            txtDiscountAmount.Text = discountAmount.ToString("c"); //currency format
             txtTotal.Text = invoiceTotal.ToString("c");
 
+            //move the focus to the Subtotal text box
             txtSubTotal.Focus();
         }
 
